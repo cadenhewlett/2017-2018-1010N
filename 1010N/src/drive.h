@@ -3,8 +3,8 @@
 
 //function for left half of the drive
 void leftDrive(int driveSpeed) {
-  motorSet(2, driveSpeed);
-  motorSet(3, driveSpeed);
+  motorSet(2, -driveSpeed);
+  motorSet(3, -driveSpeed);
 }
 
 //function for the right half of the drive
@@ -26,5 +26,5 @@ void drive_auto(int driveSpeed, int driveTime){
 //probably wont work tbh
 void turn_auto(int turnSpeed, int turnTime) {
   rightDrive(turnSpeed);
-  leftDrive(-turnSpeed);
+  leftDrive(turnSpeed);
 }

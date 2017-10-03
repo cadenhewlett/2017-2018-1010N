@@ -2,6 +2,7 @@
 #include "drive.h"
 #include "mobileGoalLift.h"
 #include "arm.h"
+#include "claw.h"
 /*
  * Runs the user operator control code. This function will be started in its own task with the
  * default priority and stack size whenever the robot is enabled via the Field Management System
@@ -24,8 +25,8 @@ void operatorControl() {
 		delay(20);
 
 		//drive
-		leftDrive(joystickGetAnalog(1, 3));
-		rightDrive(joystickGetAnalog(1, 2));
+		leftDrive(joystickGetAnalog(1, 2));
+		rightDrive(joystickGetAnalog(1, 3));
 
 		//MG Lift
 		if (joystickGetDigital(1, 5, JOY_UP)) {
@@ -46,6 +47,15 @@ void operatorControl() {
 		}
 		else {
 			armLift(0);
+		}
+		if (joystickGetDigital(2, 5, JOY_UP)) {
+			clawMove(127);
+		}
+		else if (joystickGetDigital(2, 5, JOY_DOWN)) {
+			clawMove(-127);
+		}
+		else {
+			clawMove(0);
 		}
 	}
 }
