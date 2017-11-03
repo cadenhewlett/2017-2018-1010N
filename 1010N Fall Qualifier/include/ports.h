@@ -2,25 +2,25 @@
 #define PORTS_H_
 
 //Drive Right
-#define DRIVE_RF 2
-#define DRIVE_RB 6// Poder Expander D
+#define DRIVE_RF 3
+#define DRIVE_RB 6 //Power Expander D
 
 //Drive Left
-#define DRIVE_LF 9 //Power Expander C
-#define DRIVE_LB 5
+#define DRIVE_LF 4 //Power Expander C
+#define DRIVE_LB 7
 
 //Arm
-#define ARM_R 4 //Power Expander A
-#define ARM_L 3 //Power Expander B
+#define ARM_R 2
+#define ARM_L1 8 //Power Expander A
+#define ARM_L2 9
 
 //Mobile Goal Lift
-#define LIFT_R 1
-#define LIFT_L 10
+#define LIFT 10
 
-//Rollers
-#define INTAKE 8
+//Claw
+#define INTAKE 1
 
-//Chainbar
-#define CHAINBAR 7
+//Four Bar
+#define FOURBAR 5 //Power Expander B
 
 #endif
