@@ -4,6 +4,7 @@
 void moveArm(int speed){
 
  motorSet(ARM_R, speed);
-  motorSet(ARM_L, -speed);
+  motorSet(ARM_L1, -speed);
+  motorSet(ARM_L2, -speed);
 
 }

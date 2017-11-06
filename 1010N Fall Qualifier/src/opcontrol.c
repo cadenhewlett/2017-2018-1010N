@@ -48,10 +48,10 @@ int encoderCurrent;
 		//        Arm
 		//***********************
 
-		if (joystickGetDigital(1, 6, JOY_UP)){
+		if (joystickGetDigital(2, 5, JOY_UP)){
 			moveArm(127);
 		}
-		else if (joystickGetDigital(1, 6, JOY_DOWN)){
+		else if (joystickGetDigital(2, 5, JOY_DOWN)){
 			moveArm(-127);
 		}
 		else {
@@ -76,10 +76,10 @@ int encoderCurrent;
 		//       Intake
 		//***********************
 		//if (analogRead(1) > 800){
-		if (joystickGetDigital(2, 6, JOY_UP)){
+		if (joystickGetDigita(1, 6, JOY_UP)){
 			moveIntake(-127);
 		}
-		else if (joystickGetDigital(2, 6, JOY_DOWN)){
+		else if (joystickGetDigital(1, 6, JOY_DOWN)){
 			moveIntake(127);
 		}
 		else {
@@ -97,17 +97,16 @@ moveIntake(0);
 		//     Chain Bar
 		//***********************
 
-		if (joystickGetDigital(2, 5, JOY_DOWN)){
-			moveChainbar(-127);
-			moveIntake(50);
+		if (joystickGetDigital(2, 6, JOY_DOWN)){
+			move4bar(-127);
 			}
 
-		else if ((joystickGetDigital(2, 5, JOY_UP))) {
-			moveChainbar(127);
+		else if ((joystickGetDigital(2, 6, JOY_UP))) {
+			move4bar(127);
 		}
 
 		else{
-			moveChainbar(0);
+			move4bar(0);
 		}
 
 		delay(20);
