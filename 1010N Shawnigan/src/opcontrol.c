@@ -58,19 +58,19 @@ void operatorControl() {
 			moveArm(127);
 			arm_targetValue = (encoderGet(encoderA));
 		}
-		else if(joystickGetDigital(1, 6, JOY_UP) == 0 && joystickGetDigital(1, 6, JOY_DOWN) == 0) {
+		/*else if(joystickGetDigital(1, 6, JOY_UP) == 0 && joystickGetDigital(1, 6, JOY_DOWN) == 0) {
 
 			int arm_gain = 1.5; //Old P Loop
 			int arm_error = arm_targetValue - encoderGet(encoderA);
 			int arm_speed = arm_error * arm_gain;
 			motorCap(arm_speed,127);
 			moveArm(arm_speed);
-			/*if(encoderGet(encoderA)>-50){
+			if(encoderGet(encoderA)>-50){
 			armPID(arm_targetValue, 1.2, 9);
 		} //New PID Loop
-			else{moveArm(0);}*/
+			else{moveArm(0);}
 
-	}
+	}*/
 		else{
 			moveArm(0);
 		}
