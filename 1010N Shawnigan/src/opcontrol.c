@@ -22,7 +22,7 @@ void operatorControl() {
 
 		int Y1 = 0; //Y-Axis on Arcade
 		int X1 = 0; //X-Axis on Arcade
-		int deadZone = 5; //Deadzone Value
+		int deadZone = 2; //Deadzone Value
 
 		int leftStickVertical = joystickGetAnalog(1, 3); //Joystick command for vertical movement
 		int leftStickHorizontal = joystickGetAnalog(1, 1); //Joystick command for horizontal movement
@@ -83,7 +83,7 @@ void operatorControl() {
 			moveMogo(127);
 		}
 		else if (joystickGetDigital(1, 5, JOY_DOWN)){
-			moveMogo(-100);
+			moveMogo(-127);
 		}
 		else {
 			moveMogo(0);

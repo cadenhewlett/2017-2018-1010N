@@ -6,11 +6,32 @@
 #include "fourbar.h"
 #include "mogo.h"
 
+#define UP -1
+#define DOWN 1
+#define FORWARD 1
+#define BACK -1
+#define RIGHT 1
+#define LEFT -1
+
 void skills() {
 }
 
-void mobilered() {
-  
+void mobileleftred() {
+  moveIntake(-30); //Hold PreLoad until Mobile Goal
+  arm(UP, 60, 3000, 1.5, 6); //Arm Up to open way for Mogo and Intake
+  moveMogo(-127);
+  drive(FORWARD, 1300);
+  arm(DOWN,20 , 2000 , 1.5, 9);
+  moveIntake(127);
+  arm(UP,60,3000,1.5,6);
+  moveMogo(127);
+  delay(2000);
+  moveMogo(0);
+  moveIntake(0);
+  drive(BACK, 1000);
+  turn(RIGHT, 165, 3000, 1.5, 6);
+  bar(DOWN, 2500, 3000, 1.5, 6);
+
 
 }
 
@@ -47,15 +68,15 @@ void autonomous() {
 switch(myauto){
 
     case -1:
-
+      mobileleftred();
     break;
 
     case 0:
-
+      mobileleftred();
     break;
 
     case 1:
-
+    mobileleftred();
     break;
 
     case 2:

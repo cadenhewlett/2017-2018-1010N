@@ -13,7 +13,10 @@
 #define BACKWARD -1
 #define RIGHT 1
 #define LEFT -1
-/////////////////////////////////////////////////////////////////////////////
+
+//********************************
+//       Motor Speed Cap
+//********************************
 
 void motorCap(int what, int speed){
   if(what > speed){
@@ -24,7 +27,9 @@ void motorCap(int what, int speed){
   }
 }
 
-/////////////////////////////////////////////////////////////////////////////
+//***********************
+//       Drive PID
+//***********************
 
 void drive(int direction, int target){
 
@@ -46,7 +51,7 @@ while(tics < target){
 
 
 if(tics < target){
-      leftPower = -127;
+      leftPower = 127;
       rightPower = 127;}
     else{
       leftPower = 0;
@@ -57,7 +62,9 @@ moveDrive(direction*rightPower,direction*leftPower);
 }
 }
 
-/////////////////////////////////////////////////////////////////////////////
+//***********************
+//       Turn PID
+//***********************
 
 void turn(int direction, int targetTurn, int timeout, float kp, float kd)
 {
@@ -97,17 +104,18 @@ if(drivepower<-90){drivepower = -90;}
 
 int leftside = direction*drivepower;
 int rightside = direction*drivepower;
-moveDrive(leftside, rightside);
+moveDrive(leftside, -rightside);
 delay(40);
 }
 delay(20);
 }
 
-/////////////////////////////////////////////////////////////////////////
+//***********************
+//       Arm Static PID
+//***********************
 
 void armPID(int targetValue, float kp, float kd)
 {
-
 int error = 0;
 int error_last = 0;
 int error_diff = 0;
@@ -140,40 +148,112 @@ moveArm(armpower);
 delay(40);
 }
 
-//////////////////////////////////////////////////////////////////////////
+//***********************
+//       Arm Move PID
+//***********************
 
-void arm(int direction, int targetValue, int timeout, float kp, float kd)
-{
-encoderReset(encoderA);
+void arm(int direction, int targetValue, int timeout, float kp, float kd){
 
-int error = 0;
-int error_last = 0;
-int error_diff = 0;
-int error_sum = 0;
-int pos =  0;
-float ki = 0;
-float p;
-float d;
-float i;
-int armpower;
+  encoderReset(encoderA);
 
-pos = encoderGet(encoderA);
-error =  targetValue - pos;
+  int error = 0;
+  int error_last = 0;
+  int error_diff = 0;
+  int error_sum = 0;
+  int pos =  0;
+  float ki = 0;
+  float p;
+  float d;
+  float i;
+  int armpower;
 
-error_diff = error - error_last;
-error_last = error;
-error_sum  += error; // same as errorsum  = errorsum + error
+  int startTime = millis();
+  while((millis()-startTime)<timeout){
 
-p = kp * error;
+    pos = encoderGet(encoderA);
+    error =  targetValue - pos;
 
-d  = kd * error_diff;
-if(error < 5) //icap
-{i = ki * error_sum;}
+    error_diff = error - error_last;
+    error_last = error;
+    error_sum  += error; // same as errorsum  = errorsum + error
 
-armpower = p+i+d;
-if(armpower>90){armpower = 90;}
-if(armpower<-90){armpower = -90;}
+    p = kp * error;
 
-moveArm(armpower);
-delay(40);
+    d  = kd * error_diff;
+    if(error < 5) //icap
+    {i = ki * error_sum;}
+
+    armpower = p+i+d;
+    if(armpower>90){armpower = 90;}
+    if(armpower<-90){armpower = -90;}
+
+    int speed = armpower * direction;
+
+    moveArm(speed);
+
+    delay(40);
+  }
+}
+
+//***********************
+//       Mogo Function
+//***********************
+
+void mogo(int direction, int timeout){
+  moveMogo(-127*direction);
+  delay(timeout);
+  moveMogo(0);
+}
+
+//****************************
+//       Intake Function
+//****************************
+
+
+
+//***************************
+//       FourBar PID
+//***************************
+
+void bar(int direction, int targetValue, int timeout, float kp, float kd){
+
+  analogCalibrate(1);
+
+  int error = 0;
+  int error_last = 0;
+  int error_diff = 0;
+  int error_sum = 0;
+  int pos =  0;
+  float ki = 0;
+  float p;
+  float d;
+  float i;
+  int barpower;
+
+  int startTime = millis();
+  while((millis()-startTime)<timeout){
+
+    pos = analogRead(1);
+    error =  targetValue - pos;
+
+    error_diff = error - error_last;
+    error_last = error;
+    error_sum  += error; // same as errorsum  = errorsum + error
+
+    p = kp * error;
+
+    d  = kd * error_diff;
+    if(error < 5) //icap
+    {i = ki * error_sum;}
+
+    barpower = p+i+d;
+    if(barpower>40){barpower = 40;}
+    if(barpower<-40){barpower = -40;}
+
+    int speed = barpower * direction;
+
+    moveFourBar(speed);
+
+    delay(40);
+  }
 }

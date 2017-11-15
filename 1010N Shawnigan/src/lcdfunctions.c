@@ -79,25 +79,25 @@ void disablelcd(void *ignore){
             lcdSetText(uart1, 2, "Skills");
           break;
           case 1:
-            lcdSetText(uart1, 2, "Mobile Red");
+            lcdSetText(uart1, 2, "Mobile L Red");
           break;
           case 2:
-            lcdSetText(uart1, 2, "Mobile BLue");
+            lcdSetText(uart1, 2, "Mobile R BLue");
           break;
           case 3:
-            lcdSetText(uart1, 2, "Point Red");
+            lcdSetText(uart1, 2, "Mobile R Red");
           break;
           case 4:
-            lcdSetText(uart1, 2, "Point Blue");
+            lcdSetText(uart1, 2, "Mobile L Blue");
           break;
           case 5:
-            lcdSetText(uart1, 2, "DriveF");
+            lcdSetText(uart1, 2, "StationaryBlue");
           break;
           case 6:
-            lcdSetText(uart1, 2, "BackStarsR");
+            lcdSetText(uart1, 2, "StationaryRed");
           break;
           case 7:
-            lcdSetText(uart1, 2, "BackStarsL");
+            lcdSetText(uart1, 2, "20 Point Zone");
           break;
           }}
           delay(20);
