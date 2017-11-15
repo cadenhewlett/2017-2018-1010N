@@ -21,6 +21,7 @@ void mobileleftred() {
   arm(UP, 60, 3000, 1.5, 6); //Arm Up to open way for Mogo and Intake
   moveMogo(-127);
   drive(FORWARD, 1300);
+  stopEverything();
   arm(DOWN,20 , 2000 , 1.5, 9);
   moveIntake(127);
   arm(UP,60,3000,1.5,6);
@@ -28,11 +29,20 @@ void mobileleftred() {
   delay(2000);
   moveMogo(0);
   moveIntake(0);
-  drive(BACK, 1000);
-  turn(RIGHT, 165, 3000, 1.5, 6);
-  bar(DOWN, 2500, 3000, 1.5, 6);
-
-
+  turn(RIGHT,180,5000,1.5,9);
+  drive(FORWARD, 1000);
+  turn(RIGHT,45,5000,1.5,9);
+  moveDrive(127,127);
+  delay(400);
+  moveDrive(0,0);
+  moveIntake(-127);
+  delay(1500);
+  moveDrive(-127,-127);
+  delay(100);
+  moveIntake(127);
+  delay(400);
+  stopEverything();
+  bar(UP, 2500, 3000, 1.5, 6);
 }
 
 void mobileblue() {

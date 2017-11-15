@@ -22,7 +22,7 @@ void operatorControl() {
 
 		int Y1 = 0; //Y-Axis on Arcade
 		int X1 = 0; //X-Axis on Arcade
-		int deadZone = 2; //Deadzone Value
+		int deadZone = 20; //Deadzone Value
 
 		int leftStickVertical = joystickGetAnalog(1, 3); //Joystick command for vertical movement
 		int leftStickHorizontal = joystickGetAnalog(1, 1); //Joystick command for horizontal movement

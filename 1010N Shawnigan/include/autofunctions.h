@@ -3,6 +3,8 @@
 
 #include "main.h"
 
+void stopEverything();
+
 void motorCap(int what, int speed); //Motor Cap
 
 void drive(int direction, int target); //Autonomous Drive Function

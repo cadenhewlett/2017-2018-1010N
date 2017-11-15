@@ -14,6 +14,14 @@
 #define RIGHT 1
 #define LEFT -1
 
+void stopEverything(){
+  moveFourBar(0);
+  moveDrive(0,0);
+  moveArm(0);
+  moveMogo(0);
+  moveIntake(0);
+}
+
 //********************************
 //       Motor Speed Cap
 //********************************
@@ -216,44 +224,8 @@ void mogo(int direction, int timeout){
 //***************************
 
 void bar(int direction, int targetValue, int timeout, float kp, float kd){
+while(analogRead(1)<targetValue){
+  moveFourBar(-127*direction);
+}
 
-  analogCalibrate(1);
-
-  int error = 0;
-  int error_last = 0;
-  int error_diff = 0;
-  int error_sum = 0;
-  int pos =  0;
-  float ki = 0;
-  float p;
-  float d;
-  float i;
-  int barpower;
-
-  int startTime = millis();
-  while((millis()-startTime)<timeout){
-
-    pos = analogRead(1);
-    error =  targetValue - pos;
-
-    error_diff = error - error_last;
-    error_last = error;
-    error_sum  += error; // same as errorsum  = errorsum + error
-
-    p = kp * error;
-
-    d  = kd * error_diff;
-    if(error < 5) //icap
-    {i = ki * error_sum;}
-
-    barpower = p+i+d;
-    if(barpower>40){barpower = 40;}
-    if(barpower<-40){barpower = -40;}
-
-    int speed = barpower * direction;
-
-    moveFourBar(speed);
-
-    delay(40);
-  }
 }
