@@ -14,6 +14,32 @@
 #define LEFT -1
 
 void skills() {
+  moveIntake(-30);
+  bar(UP, 2500, 3000, 1.5, 6);
+  moveMogo(-127);
+  delay(1500);
+  moveMogo(0);
+  drive(FORWARD,400);
+  moveMogo(127);
+  delay(1500);
+  moveMogo(0);
+  turn(RIGHT, 180, 5000, 0.9, 9);
+  moveIntake(127);
+  drive(FORWARD,400);
+  moveIntake(0);
+  turn(RIGHT, 90, 5000, 0.9, 9);
+  drive(FORWARD, 200);
+  turn(LEFT, 90, 5000, 0.9, 9);
+  moveDrive(127,127);
+  delay(1500);
+  moveDrive(0);
+  moveMogo(-127);
+  delay(1500);
+  moveDrive(-127,-127);
+  delay(100);
+  moveMogo(127);
+  delay(400);
+  stopEverything();
 }
 
 void mobileleftred() {
@@ -35,11 +61,11 @@ void mobileleftred() {
   moveDrive(127,127);
   delay(400);
   moveDrive(0,0);
-  moveIntake(-127);
+  moveMogo(-127);
   delay(1500);
   moveDrive(-127,-127);
   delay(100);
-  moveIntake(127);
+  moveMogo(127);
   delay(400);
   stopEverything();
   bar(UP, 2500, 3000, 1.5, 6);
