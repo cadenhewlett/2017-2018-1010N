@@ -73,6 +73,7 @@ void disablelcd(void *ignore){
       //auto line dispalby
       if(screen == 1){
         switch(myauto){
+          //lcdPrint(uart1, 1, "%d, Auto  %d ", screen, myauto);
           case -1:
             lcdSetText(uart1, 2, "NoAuto");
           case 0:
@@ -97,7 +98,10 @@ void disablelcd(void *ignore){
             lcdSetText(uart1, 2, "StationaryRed");
           break;
           case 7:
-            lcdSetText(uart1, 2, "20 Point Zone");
+            lcdSetText(uart1, 2, "20 Red Point Zone");
+          break;
+          case 8:
+            lcdSetText(uart1, 2, "20 Blue Point Zone");
           break;
           }}
           delay(20);
@@ -156,7 +160,6 @@ void opcontrollcd(void *ignore){
           delay(50);
         }
       break;
-
 
       default:
       lcdClear(uart1);

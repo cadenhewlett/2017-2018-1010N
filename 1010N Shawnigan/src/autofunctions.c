@@ -107,8 +107,8 @@ if(error < 5) //icap
 {i = ki * error_sum;}
 
 drivepower = p+i+d;
-if(drivepower>90){drivepower = 90;}
-if(drivepower<-90){drivepower = -90;}
+if(drivepower>127){drivepower = 127;}
+if(drivepower<-127){drivepower = -127;}
 
 int leftside = direction*drivepower;
 int rightside = direction*drivepower;
@@ -128,12 +128,14 @@ int error = 0;
 int error_last = 0;
 int error_diff = 0;
 int error_sum = 0;
-int pos =  0;
+int pos = 0;
 float ki = 0;
 float p;
 float d;
 float i;
 int armpower;
+
+while(joystickGetDigital(1, 6, JOY_UP) == 0 && joystickGetDigital(1, 6, JOY_DOWN) == 0){
 
 pos = abs(encoderGet(encoderA));
 error =  targetValue - pos;
@@ -151,6 +153,8 @@ if(error < 5) //icap
 armpower = p+i+d;
 if(armpower>90){armpower = 90;}
 if(armpower<-90){armpower = -90;}
+
+}
 
 moveArm(armpower);
 delay(40);

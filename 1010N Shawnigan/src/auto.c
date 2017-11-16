@@ -32,7 +32,7 @@ void skills() {
   turn(LEFT, 90, 5000, 0.9, 9);
   moveDrive(127,127);
   delay(1500);
-  moveDrive(0);
+  moveDrive(0,0);
   moveMogo(-127);
   delay(1500);
   moveDrive(-127,-127);
@@ -43,55 +43,87 @@ void skills() {
 }
 
 void mobileleftred() {
-  moveIntake(-30); //Hold PreLoad until Mobile Goal
-  arm(UP, 60, 3000, 1.5, 6); //Arm Up to open way for Mogo and Intake
-  moveMogo(-127);
-  drive(FORWARD, 1300);
-  stopEverything();
-  arm(DOWN,20 , 2000 , 1.5, 9);
-  moveIntake(127);
-  arm(UP,60,3000,1.5,6);
+  encoderReset(encoderL);
+  encoderReset(encoderR);
+  encoderReset(encoderA); //Reset Encoder
+  moveIntake(-40); //Hold PreLoad until Mobile Goal
+  arm(UP, 15, 500, 1.5, 3); //ShakeArm
+  arm(DOWN, 15, 500, 1.5, 3); //ShakeArm
+  bar(UP, 2500, 1500, 1.5, 9); //Arm Up to open way for Mogo and Intake
+  moveMogo(-127); //Mogo Down
+  drive(FORWARD, 1300); //Drive Forward Towards MobileGoal
+  moveMogo(0); //Mogo Stop
+  delay(300); //Timeout break
+  moveMogo(127); //Pick up mobile goal
+  delay(1500); //Timeout pick up
+  moveMogo(0); //Stop mobile goal
+  moveIntake(127); //Let go of cone
+  delay(1000); //Timeout rollers
+  moveIntake(0); //Stop intake
+  turn(RIGHT,210,2700,1.5,4); //Turn right 210 degrees towards stationary goal
+  drive(FORWARD, 1000); //Drive back to start
+  turn(RIGHT,55,700,1.5,3); //Turn right towards scoring zones
+  moveDrive(127,127); //Drive into 10 point zone
+  delay(500); //Timeout drive over pipe
+  moveDrive(0,0); //Stop drive
+  moveMogo(-127); //Drop mobile goal
+  delay(1300); //Timeout drop mobile goal
+  moveDrive(-127,-127);
+  delay(200);
   moveMogo(127);
-  delay(2000);
-  moveMogo(0);
-  moveIntake(0);
-  turn(RIGHT,180,5000,1.5,9);
-  drive(FORWARD, 1000);
-  turn(RIGHT,45,5000,1.5,9);
-  moveDrive(127,127);
   delay(400);
+  stopEverything();
+}
+
+void mobilerightblue() {
+
+}
+
+void mobilerightred() {
+
+}
+
+void mobileleftblue() {
+
+}
+
+void stationarygoal() {
+
+}
+
+void pointred() {
+  encoderReset(encoderA);
+  moveIntake(-40); //Hold PreLoad until Mobile Goal
+  bar(UP, 2500, 1500, 1.5, 9); //Arm Up to open way for Mogo and Intake
+  moveMogo(-127);
+  drive(FORWARD, 1400);
+  moveMogo(0);
+  delay(300);
+  moveMogo(127);
+  delay(1300);
+  moveMogo(0);
+  moveIntake(127);
+  delay(500);
+  moveIntake(0);
+  turn(RIGHT,210,2700,1.5,3);// 210 before
+  drive(FORWARD, 1000);
+
+
+
+  moveDrive(127,127);
+  delay(1000);
   moveDrive(0,0);
   moveMogo(-127);
-  delay(1500);
+  delay(1300);
   moveDrive(-127,-127);
-  delay(100);
+  delay(200);
   moveMogo(127);
   delay(400);
   stopEverything();
   bar(UP, 2500, 3000, 1.5, 6);
 }
 
-void mobileblue() {
-
-}
-
 void pointblue() {
-
-}
-
-void cuberight() {
-
-}
-
-void drivef() {
-
-}
-
-void backsandpright() {
-
-}
-
-void backsandpleft() {
 
 }
 
@@ -104,11 +136,11 @@ void autonomous() {
 switch(myauto){
 
     case -1:
-      mobileleftred();
+      noauto();
     break;
 
     case 0:
-      mobileleftred();
+      skills();
     break;
 
     case 1:
@@ -116,27 +148,27 @@ switch(myauto){
     break;
 
     case 2:
-
+    mobilerightblue();
     break;
 
     case 3:
-
+    mobilerightred();
     break;
 
     case 4:
-
+    mobileleftblue();
     break;
 
     case 5:
-
+    stationarygoal();
     break;
 
     case 6:
-
+    pointred();
     break;
 
     case 7:
-
+    pointblue();
     break;
 
  }

@@ -11,6 +11,7 @@ void operatorControl() {
 
 	encoderReset(encoderA);
 	gyroReset(gyro);
+	analogCalibrate(1);
 
 	while (1) {
 
@@ -60,20 +61,14 @@ void operatorControl() {
 		}
 		/*else if(joystickGetDigital(1, 6, JOY_UP) == 0 && joystickGetDigital(1, 6, JOY_DOWN) == 0) {
 
-			int arm_gain = 1.5; //Old P Loop
+			/*int arm_gain = 1.5; //Old P Loop
 			int arm_error = arm_targetValue - encoderGet(encoderA);
 			int arm_speed = arm_error * arm_gain;
 			motorCap(arm_speed,127);
 			moveArm(arm_speed);
-			if(encoderGet(encoderA)>-50){
-			armPID(arm_targetValue, 1.2, 9);
-		} //New PID Loop
-			else{moveArm(0);}
-
-	}*/
-		else{
-			moveArm(0);
-		}
+			armPID(arm_targetValue, 0.5, 3);
+		}*/
+		else{moveArm(0);}
 
 		//***********************
 		//   Mobile Goal Lift
@@ -115,10 +110,11 @@ void operatorControl() {
 			moveFourBar(127);
 		}
 		else if (joystickGetDigital(2,8,JOY_RIGHT)){
-			int bar_gain = 1.05;
+			float bar_gain = 0.2;
+			lcdPrint(uart1, 1, "BarGain %f", bar_gain);
 			int bar_error = 1250 - analogRead(1);
 			int bar_speed = bar_error * bar_gain;
-			motorCap(bar_speed, 10);
+			motorCap(bar_speed, 5);
 			moveFourBar(bar_speed);
 			}
 			else if (joystickGetDigital(2,8,JOY_UP)){
