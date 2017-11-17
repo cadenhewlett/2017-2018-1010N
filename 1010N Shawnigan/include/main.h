@@ -26,6 +26,7 @@ Encoder encoderA;
 
 Gyro gyro;
 
+int myauto;
 void autonomous();
 void initializeIO();
 void initialize();

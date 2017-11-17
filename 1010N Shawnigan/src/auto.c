@@ -274,7 +274,7 @@ switch(myauto){
     break;
 
     case 0:
-    stationarygoal();
+    skills();
     break;
 
     case 1:

@@ -6,7 +6,7 @@ void disablelcd(void *ignore){
   int screen = 1;
   int screen_cap = 3;
   int btn_time = 100;
-  myauto = 1; //was int
+  int myauto = 1; //was int
   lcdClear(uart1);
 
   while(true){
