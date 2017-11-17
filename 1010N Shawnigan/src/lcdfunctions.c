@@ -76,6 +76,7 @@ void disablelcd(void *ignore){
           //lcdPrint(uart1, 1, "%d, Auto  %d ", screen, myauto);
           case -1:
             lcdSetText(uart1, 2, "NoAuto");
+          break;
           case 0:
             lcdSetText(uart1, 2, "Skills");
           break;

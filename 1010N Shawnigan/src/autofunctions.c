@@ -227,9 +227,14 @@ void mogo(int direction, int timeout){
 //       FourBar PID
 //***************************
 
-void bar(int direction, int targetValue, int timeout, float kp, float kd){
+void barup(int direction, int targetValue, int timeout, float kp, float kd){
 while(analogRead(1)<targetValue){
-  moveFourBar(-127*direction);
+  moveFourBar(127);
+}
 }
 
+void bardown(int direction, int targetValue, int timeout, float kp, float kd){
+while(analogRead(1)>targetValue){
+  moveFourBar(-127);
+}
 }

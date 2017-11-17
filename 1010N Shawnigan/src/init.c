@@ -6,6 +6,8 @@ void initializeIO() {
 
 void initialize() {
 
+pinMode(12, OUTPUT);
+digitalWrite(12, HIGH);
   //Initialize Encoders (Drive and Arm)
   encoderR = (encoderInit(1, 2, false));
   encoderL = (encoderInit(5, 6, false));

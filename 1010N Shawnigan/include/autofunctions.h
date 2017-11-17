@@ -15,9 +15,11 @@ void armPID(int targetValue, float kp, float kd); //ArmPID for OpControl
 
 void arm(int direction, int targetValue, int timeout, float kp, float kd); //ArmPID for Autonomous
 
-void bar(int direction, int targetValue, int timeout, float kp, float kd); //FourBarPID for Autonomous
+void barup(int direction, int targetValue, int timeout, float kp, float kd); //FourBarPID for Autonomous
 
 void mogo(int direction, int timeout); //Mobile Goal Function
+
+void bardown(int direction, int targetValue, int timeout, float kp, float kd);
 
 void intake(int direction, int delay); //Intake Function
 
