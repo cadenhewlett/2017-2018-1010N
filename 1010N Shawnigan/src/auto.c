@@ -71,9 +71,9 @@ void mobileleftred() {
   moveIntake(127); //Let go of cone
   delay(1000); //Timeout rollers
   moveIntake(0); //Stop intake
-  turn(RIGHT,210,2700,1.5,4); //Turn right 210 degrees towards stationary goal
+  turn(RIGHT,200,2700,1.5,4); //Turn right 210 degrees towards stationary goal
   drive(FORWARD, 1000); //Drive back to start
-  turn(RIGHT,55,700,1.5,3); //Turn right towards scoring zones
+  turn(RIGHT,60,700,1.5,3); //Turn right towards scoring zones
   moveDrive(127,127); //Drive into 10 point zone
   delay(450); //Timeout drive over pipe
   moveDrive(0,0); //Stop drive
@@ -192,7 +192,7 @@ void stationarygoal() {
   moveIntake(-40);
   arm(UP, 15, 500, 1.5, 3); //ShakeArm
   arm(DOWN, 15, 500, 1.5, 3); //ShakeArm
-  barup(UP, 2500, 3000, 1.5, 6);
+  barup(UP, 2500, 1000, 1.5, 6);
   arm(UP, 100, 1500,1.5,3);
   drive(FORWARD,525);
   delay(300);
@@ -204,11 +204,23 @@ void stationarygoal() {
   moveIntake(-127);
   delay(200);
   turn(RIGHT,100,1500,1.5,3);
-  drive(FORWARD,25);
+  drive(FORWARD,50);
   moveArm(127);
-  delay(1000);
+  delay(500);
   moveArm(0);
-  bardown(DOWN, 670, 1000, 1.5, 3);
+  bardown(DOWN, 670, 3000, 1.5, 3);
+  delay(500);
+  barup(UP, 2500, 3000, 1.5, 6);
+  drive(BACK,25);
+  turn(LEFT,100,1500,1.5,3);
+  arm(UP, 80, 1500,1.5,3);
+  drive(FORWARD,250);
+  delay(300);
+  moveIntake(127);
+  delay(100);
+  arm(UP, 40, 2000,1.5,3);
+  drive(BACK,250);
+  stopEverything();
 }
 
 void pointred() {

@@ -228,7 +228,7 @@ void mogo(int direction, int timeout){
 //***************************
 
 void barup(int direction, int targetValue, int timeout, float kp, float kd){
-while(analogRead(1)<targetValue){
+if(analogRead(1)<targetValue){
   moveFourBar(127);
 }
 }
