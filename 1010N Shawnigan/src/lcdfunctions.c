@@ -6,7 +6,7 @@ void disablelcd(void *ignore){
   int screen = 1;
   int screen_cap = 3;
   int btn_time = 100;
-  int myauto = 1; //was int
+  myauto = 1; //was int
   lcdClear(uart1);
 
   while(true){
@@ -92,10 +92,10 @@ void disablelcd(void *ignore){
             lcdSetText(uart1, 2, "Mobile L Blue");
           break;
           case 5:
-            lcdSetText(uart1, 2, "StationaryBlue");
+            lcdSetText(uart1, 2, "StationaryRED");
           break;
           case 6:
-            lcdSetText(uart1, 2, "StationaryRed");
+            lcdSetText(uart1, 2, "StationaryBLUE");
           break;
           case 7:
             lcdSetText(uart1, 2, "20 Red Point Zone");

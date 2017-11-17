@@ -185,18 +185,19 @@ void mobileleftblue() {
   stopEverything();
 }
 
-void stationarygoal() {
+void stationarygoalred() {
   encoderReset(encoderL);
   encoderReset(encoderR);
   encoderReset(encoderA);
   moveIntake(-40);
   arm(UP, 15, 500, 1.5, 3); //ShakeArm
   arm(DOWN, 15, 500, 1.5, 3); //ShakeArm
-  barup(UP, 2500, 1000, 1.5, 6);
-  arm(UP, 100, 1500,1.5,3);
+  moveFourBar(127);
+  arm(UP, 60, 1500,1.5,3);//100
+  moveFourBar(0);
   drive(FORWARD,525);
   delay(300);
-  arm(DOWN,20,2000,1.5,3);
+  arm(DOWN,20,1000,1.5,3);
   moveIntake(127);
   delay(100);
   arm(UP, 40, 2000,1.5,3);
@@ -206,16 +207,21 @@ void stationarygoal() {
   turn(RIGHT,100,1500,1.5,3);
   drive(FORWARD,50);
   moveArm(127);
-  delay(500);
+  delay(500);//500
   moveArm(0);
-  bardown(DOWN, 670, 3000, 1.5, 3);
+  moveFourBar(-127);
+  delay(1500);
+  moveFourBar(0);
   delay(500);
-  barup(UP, 2500, 3000, 1.5, 6);
   drive(BACK,25);
   turn(LEFT,100,1500,1.5,3);
+  //barup(UP, 2300, 3000, 1.5, 3);
+  moveFourBar(127);
   arm(UP, 80, 1500,1.5,3);
-  drive(FORWARD,250);
+  moveFourBar(0);
+  drive(FORWARD,300);//275
   delay(300);
+  arm(DOWN,20,1000,1.5,3);
   moveIntake(127);
   delay(100);
   arm(UP, 40, 2000,1.5,3);
@@ -241,9 +247,6 @@ void pointred() {
   moveIntake(0);
   turn(RIGHT,210,2700,1.5,3);// 210 before
   drive(FORWARD, 1000);
-
-
-
   moveDrive(127,127);
   delay(1000);
   moveDrive(0,0);
@@ -294,7 +297,7 @@ switch(myauto){
     break;
 
     case 5:
-    stationarygoal();
+    stationarygoalred();
     break;
 
     case 6:
