@@ -270,12 +270,12 @@ void autonomous(){
 switch(myauto){
 
     case -1:
-      noauto();
+    noauto();
     break;
 
     case 0:
-      stationarygoal();
-      break;
+    stationarygoal();
+    break;
 
     case 1:
     mobileleftred();

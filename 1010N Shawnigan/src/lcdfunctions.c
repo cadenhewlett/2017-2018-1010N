@@ -6,7 +6,7 @@ void disablelcd(void *ignore){
   int screen = 1;
   int screen_cap = 3;
   int btn_time = 100;
-  int myauto = 1;
+  myauto = 1; //was int
   lcdClear(uart1);
 
   while(true){
@@ -73,7 +73,6 @@ void disablelcd(void *ignore){
       //auto line dispalby
       if(screen == 1){
         switch(myauto){
-          //lcdPrint(uart1, 1, "%d, Auto  %d ", screen, myauto);
           case -1:
             lcdSetText(uart1, 2, "NoAuto");
           break;

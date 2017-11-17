@@ -12,6 +12,6 @@ TaskHandle opcontrollcd_task;
 void autolcd(void*ignore);
 TaskHandle autolcd_task;
 
-int myauto;
+extern int myauto; //was int
 
 #endif
