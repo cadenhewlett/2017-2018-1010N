@@ -50,7 +50,23 @@ void skills() {
   turn(LEFT,110,1500,1.5,3);
   drive(FORWARD, 300);
   turn(LEFT,110,1500,1.5,3);
+  moveMogo(-127);
+  drive(FORWARD,800);
+  delay(200);
+  moveMogo(127);
+  delay(1500);
+  moveMogo(0);
+  turn(LEFT, 200, 2000, 1.5, 3);
+  drive(FORWARD,800);
+  moveMogo(-127); //Drop mobile goal
+  delay(1300); //Timeout drop mobile goal
+  moveDrive(-127,-127);
+  delay(200);
+  moveMogo(127);
+  delay(400);
   stopEverything();
+
+
 }
 
 void mobileleftred() {
@@ -62,7 +78,7 @@ void mobileleftred() {
   arm(DOWN, 15, 500, 1.5, 3); //ShakeArm
   barup(UP, 2500, 1500, 1.5, 9); //Arm Up to open way for Mogo and Intake
   moveMogo(-127); //Mogo Down
-  drive(FORWARD, 1300); //Drive Forward Towards MobileGoal
+  drive(FORWARD, 1400); //Drive Forward Towards MobileGoal
   moveMogo(0); //Mogo Stop
   delay(300); //Timeout break
   moveMogo(127); //Pick up mobile goal
@@ -72,7 +88,7 @@ void mobileleftred() {
   delay(1000); //Timeout rollers
   moveIntake(0); //Stop intake
   turn(RIGHT,200,2700,1.5,4); //Turn right 210 degrees towards stationary goal
-  drive(FORWARD, 1000); //Drive back to start
+  drive(FORWARD, 1200); //Drive back to start
   turn(RIGHT,60,700,1.5,3); //Turn right towards scoring zones
   moveDrive(127,127); //Drive into 10 point zone
   delay(450); //Timeout drive over pipe
@@ -104,11 +120,11 @@ void mobilerightblue() {
   moveIntake(127); //Let go of cone
   delay(1000); //Timeout rollers
   moveIntake(0); //Stop intake
-  turn(LEFT,225,2700,1.5,4); //Turn right 210 degrees towards stationary goal
+  turn(LEFT,200,2700,1.5,4); //Turn right 210 degrees towards stationary goal
   drive(FORWARD, 1000); //Drive back to start
   turn(LEFT,55,700,1.5,3); //Turn right towards scoring zones
   moveDrive(127,127); //Drive into 10 point zone
-  delay(450); //Timeout drive over pipe
+  delay(600); //Timeout drive over pipe
   moveDrive(0,0); //Stop drive
   moveMogo(-127); //Drop mobile goal
   delay(1300); //Timeout drop mobile goal
@@ -190,41 +206,85 @@ void stationarygoalred() {
   encoderReset(encoderR);
   encoderReset(encoderA);
   moveIntake(-40);
-  arm(UP, 15, 500, 1.5, 3); //ShakeArm
-  arm(DOWN, 15, 500, 1.5, 3); //ShakeArm
   moveFourBar(127);
-  arm(UP, 60, 1500,1.5,3);//100
+  arm(UP, 60, 1000,1.5,3);//100
   moveFourBar(0);
   drive(FORWARD,525);
-  delay(300);
+  //delay(300);
   arm(DOWN,20,1000,1.5,3);
-  moveIntake(127);
+  moveIntake(127);//2
   delay(100);
-  arm(UP, 40, 2000,1.5,3);
+  arm(UP, 40, 1000,1.5,3);
   drive(BACK,250);
   moveIntake(-127);
   delay(200);
-  turn(RIGHT,100,1500,1.5,3);
-  drive(FORWARD,50);
   moveArm(127);
-  delay(500);//500
+  turn(RIGHT,105,1000,1.5,3);
   moveArm(0);
+  drive(FORWARD,30);//was 40
+  /*moveArm(127);
+  delay(500);//500
+  moveArm(0);*/
   moveFourBar(-127);
-  delay(1500);
+  delay(700);
   moveFourBar(0);
-  delay(500);
+  delay(700);
   drive(BACK,25);
-  turn(LEFT,100,1500,1.5,3);
+  turn(LEFT,100,1000,1.5,3);
   //barup(UP, 2300, 3000, 1.5, 3);
   moveFourBar(127);
-  arm(UP, 80, 1500,1.5,3);
+  arm(UP, 50, 1000,1.5,3);
+  moveArm(-10);//was 70
   moveFourBar(0);
-  drive(FORWARD,300);//275
-  delay(300);
-  arm(DOWN,20,1000,1.5,3);
+  drive(FORWARD,295);//275
+  //delay(300);
   moveIntake(127);
+  delay(700);
+  arm(UP, 60, 1000,1.5,3);
+  drive(BACK,250);
+  stopEverything();
+}
+
+void stationarygoalblue(){
+  encoderReset(encoderL);
+  encoderReset(encoderR);
+  encoderReset(encoderA);
+  moveIntake(-40);
+  moveFourBar(127);
+  arm(UP, 60, 1000,1.5,3);//100
+  moveFourBar(0);
+  drive(FORWARD,525);
+  //delay(300);
+  arm(DOWN,20,1000,1.5,3);
+  moveIntake(127);//2
   delay(100);
-  arm(UP, 40, 2000,1.5,3);
+  arm(UP, 40, 1000,1.5,3);
+  drive(BACK,250);
+  moveIntake(-127);
+  delay(200);
+  moveArm(127);
+  turn(LEFT,100,1000,1.5,3);
+  moveArm(0);
+  drive(FORWARD,40);
+  /*moveArm(127);
+  delay(500);//500
+  moveArm(0);*/
+  moveFourBar(-127);
+  delay(700);
+  moveFourBar(0);
+  delay(700);
+  drive(BACK,25);
+  turn(RIGHT,100,1000,1.5,3);
+  //barup(UP, 2300, 3000, 1.5, 3);
+  moveFourBar(127);
+  arm(UP, 50, 1000,1.5,3);
+  moveArm(-10);//was 70
+  moveFourBar(0);
+  drive(FORWARD,275);//275
+  //delay(300);
+  moveIntake(127);
+  delay(700);
+  arm(UP, 60, 1000,1.5,3);
   drive(BACK,250);
   stopEverything();
 }
@@ -301,10 +361,14 @@ switch(myauto){
     break;
 
     case 6:
-    pointred();
+    stationarygoalblue();
     break;
 
     case 7:
+    pointred();
+    break;
+
+    case 8:
     pointblue();
     break;
 
