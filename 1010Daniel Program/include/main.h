@@ -20,7 +20,7 @@ extern "C" {
 #define ARM_L 4 //Power Expander A
 #define ARM_RL 7
 #define MOGO 10
-#define INTAKE 1
+#define MOGO_A 1
 #define FOURBAR 6 //Power Expander B
 
 void autonomous();

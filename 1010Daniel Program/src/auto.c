@@ -9,33 +9,35 @@
 #define DOWN 1
 
 void drive(int direction, int delay){
-  setMotor(DRIVE_RB, 127*direction);
-  setMotor(DRIVE_RF, 127*direction);
-  setMotor(DRIVE_LB, 127*direction);
-  setMotor(DRIVE_LF, 127*direction);
+  motorSet(DRIVE_RB, 127*direction);
+  motorSet(DRIVE_RF, 127*direction);
+  motorSet(DRIVE_LB, 127*direction);
+  motorSet(DRIVE_LF, 127*direction);
   delay(delay);
-  setMotor(DRIVE_RB, 0);
-  setMotor(DRIVE_RF, 0);
-  setMotor(DRIVE_LB, 0);
-  setMotor(DRIVE_LF, 0);
+  motorSet(DRIVE_RB, 0);
+  motorSet(DRIVE_RF, 0);
+  motorSet(DRIVE_LB, 0);
+  motorSet(DRIVE_LF, 0);
 }
 
 void mogo(int direction, int delay){
-  setMotor(MOGO, 127*direction);
+  motorSet(MOGO, 127*direction);
+  motorSet(MOGO_A, 127*direction);
   delay(delay);
-  setMotor(MOGO, 0);
+  motorSet(MOGO, 0);
+  motorSet(MOGO_A, 0);
 }
 
 void turn(int direction, int delay){
-  setMotor(DRIVE_RB, 127*direction);
-  setMotor(DRIVE_RF, 127*direction);
-  setMotor(DRIVE_LB, (-127)*direction);
-  setMotor(DRIVE_LF, (-127)*direction);
+  motorSet(DRIVE_RB, 127*direction);
+  motorSet(DRIVE_RF, 127*direction);
+  motorSet(DRIVE_LB, (-127)*direction);
+  motorSet(DRIVE_LF, (-127)*direction);
   delay(delay);
-  setMotor(DRIVE_RB, 0);
-  setMotor(DRIVE_RF, 0);
-  setMotor(DRIVE_LB, 0);
-  setMotor(DRIVE_LF, 0);
+  motorSet(DRIVE_RB, 0);
+  motorSet(DRIVE_RF, 0);
+  motorSet(DRIVE_LB, 0);
+  motorSet(DRIVE_LF, 0);
 }
 
 void autonomous() {

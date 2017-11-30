@@ -40,13 +40,20 @@ void operatorControl() {
 		//***********************
 
 		if (joystickGetDigital(1, 6, JOY_UP)){
-			setMotor(MOGO,-127);
+			motorSet(MOGO,-127);
+			motorSet(MOGO_A,-127);
 			arm_targetValue = (encoderGet(encoderA));
 		}
 		else if (joystickGetDigital(1, 6, JOY_DOWN)){
-			setMotor(MOGO,127);
+			motorSet(MOGO,127);
+			motorSet(MOGO_A,127);
+
 		}
-		else{setMotor(MOGO,0);}
+		else{
+			motorSet(MOGO,0);
+			motorSet(MOGO_A,0);
+		}
+
 
 
 		delay(20);
