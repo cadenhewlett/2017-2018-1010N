@@ -50,25 +50,8 @@ void operatorControl() {
 		//***********************
 		//        Arm
 		//***********************
-		int arm_targetValue;
-		if (joystickGetDigital(1, 6, JOY_UP)){
-			moveArm(-127);
-			arm_targetValue = (encoderGet(encoderA));
-		}
-		else if (joystickGetDigital(1, 6, JOY_DOWN)){
-			moveArm(127);
-			arm_targetValue = (encoderGet(encoderA));
-		}
-		/*else if(joystickGetDigital(1, 6, JOY_UP) == 0 && joystickGetDigital(1, 6, JOY_DOWN) == 0) {
 
-			/*int arm_gain = 1.5; //Old P Loop
-			int arm_error = arm_targetValue - encoderGet(encoderA);
-			int arm_speed = arm_error * arm_gain;
-			motorCap(arm_speed,127);
-			moveArm(arm_speed);
-			armPID(arm_targetValue, 0.5, 3);
-		}*/
-		else{moveArm(0);}
+		moveArm(-joystickGetAnalog(2,2));
 
 		//***********************
 		//   Mobile Goal Lift
@@ -109,7 +92,7 @@ void operatorControl() {
 		else if (joystickGetDigital(2, 5, JOY_UP)) {
 			moveFourBar(127);
 		}
-		else if (joystickGetDigital(2,8,JOY_RIGHT)){
+		else if (joystickGetDigital(2,7,JOY_LEFT)){
 			float bar_gain = 0.2;
 			lcdPrint(uart1, 1, "BarGain %f", bar_gain);
 			int bar_error = 1250 - analogRead(1);
@@ -117,12 +100,6 @@ void operatorControl() {
 			motorCap(bar_speed, 5);
 			moveFourBar(bar_speed);
 			}
-			else if (joystickGetDigital(2,8,JOY_UP)){
-				int bar_gain = 1.2;
-				int bar_error = 2750 - analogRead(1);
-				int bar_speed = bar_error * bar_gain;
-				motorCap(bar_speed, 10);
-				moveFourBar(bar_speed);
 				}
 		else{
 			moveFourBar(0);

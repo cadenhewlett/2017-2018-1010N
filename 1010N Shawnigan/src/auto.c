@@ -230,10 +230,10 @@ void stationarygoalred() {
   moveFourBar(0);
   delay(700);
   drive(BACK,25);
-  turn(LEFT,100,1000,1.5,3);
+  turn(LEFT,110,1000,1.5,3);
   //barup(UP, 2300, 3000, 1.5, 3);
   moveFourBar(127);
-  arm(UP, 50, 1000,1.5,3);
+  arm(UP, 60, 1000,1.5,3);
   moveArm(-10);//was 70
   moveFourBar(0);
   drive(FORWARD,295);//275

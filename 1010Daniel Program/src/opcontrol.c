@@ -28,12 +28,12 @@ void operatorControl() {
 		}
 
 		//Left Drive
-		motorSet(DRIVE_LF, Y1 + X1);//Left Front
-		motorSet(DRIVE_LB, Y1 + X1);//Left Back
+		motorSet(DRIVE_LF, -Y1 + X1);//Left Front
+		motorSet(DRIVE_LB, -Y1 + X1);//Left Back
 
 		//Right Drive
-		motorSet(DRIVE_RF, -Y1 + X1);//Right Front
-		motorSet(DRIVE_RB, -Y1 + X1);//Right Back
+		motorSet(DRIVE_RF, Y1 + X1);//Right Front
+		motorSet(DRIVE_RB, Y1 + X1);//Right Back
 
 		//***********************
 		//        MOGO
@@ -41,12 +41,11 @@ void operatorControl() {
 
 		if (joystickGetDigital(1, 6, JOY_UP)){
 			motorSet(MOGO,-127);
-			motorSet(MOGO_A,-127);
-			arm_targetValue = (encoderGet(encoderA));
+			motorSet(MOGO_A,127);
 		}
 		else if (joystickGetDigital(1, 6, JOY_DOWN)){
 			motorSet(MOGO,127);
-			motorSet(MOGO_A,127);
+			motorSet(MOGO_A,-127);
 
 		}
 		else{
