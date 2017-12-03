@@ -3,12 +3,13 @@
 #include "lcdfunctions.h"
 #include "drive.h"
 #include "intake.h"
-#include "chainbar.h"
+#include "fourbar.h"
 #include "mogo.h"
 #include "arm.h"
 
 void operatorControl() {
 
+	encoderReset(encoderA);
 	gyroReset(gyro);
 	analogCalibrate(1);
 
@@ -49,8 +50,8 @@ void operatorControl() {
 		//***********************
 		//        Arm
 		//***********************
-
 		moveArm(-joystickGetAnalog(2,2));
+
 
 		//***********************
 		//   Mobile Goal Lift
@@ -86,20 +87,20 @@ void operatorControl() {
 		//***********************
 
 		if (joystickGetDigital(2, 5, JOY_DOWN)){
-			moveChainBar(-127);
+			moveFourBar(-127);
 		}
 		else if (joystickGetDigital(2, 5, JOY_UP)) {
-			moveChainBar(127);
+			moveFourBar(127);
 		}
 		else if (joystickGetDigital(2,7,JOY_LEFT)){
 			float bar_gain = 0.2;
 			int bar_error = 1250 - analogRead(1);
 			int bar_speed = bar_error * bar_gain;
 			motorCap(bar_speed, 5);
-			moveChainBar(bar_speed);
+			moveFourBar(bar_speed);
 			}
 		else{
-			moveChainBar(0);
+			moveFourBar(0);
 		}
 
 		delay(20);

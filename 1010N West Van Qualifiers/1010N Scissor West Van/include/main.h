@@ -17,19 +17,14 @@ extern "C" {
 #define ARM_RL 7
 #define MOGO 10
 #define INTAKE 1
-#define CHAINBAR 6 //Power Expander B
+#define FOURBAR 6 //Power Expander B
 
 //Sensor Ports
 Encoder encoderL;
 Encoder encoderR;
+Encoder encoderA;
 
 Gyro gyro;
-#define GYRO 3
-
-#define MOGOPOT 1
-#define ARMPOT 2
-#define CHAINPOT 4
-#define INTAKEPOT 5
 
 int myauto;
 void autonomous();

@@ -6,16 +6,15 @@ void initializeIO() {
 
 void initialize() {
 
-  //LED PROGRAM
-  pinMode(12, OUTPUT);
-  digitalWrite(12, HIGH);
-
+pinMode(12, OUTPUT);
+digitalWrite(12, HIGH);
   //Initialize Encoders (Drive and Arm)
   encoderR = (encoderInit(1, 2, false));
   encoderL = (encoderInit(5, 6, false));
+  encoderA = (encoderInit(7, 8, false));
 
   //Initialize Gyro
-  gyro = (gyroInit(GYRO, 0));
+  gyro = (gyroInit(3, 0));
 
   //Initialize LCD Screen
   lcdInit(uart1);
