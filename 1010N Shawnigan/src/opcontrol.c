@@ -51,7 +51,11 @@ void operatorControl() {
 		//        Arm
 		//***********************
 
+<<<<<<< HEAD
 moveArm(-joystickGetAnalog(2,2))
+=======
+		moveArm(-joystickGetAnalog(2,2));
+>>>>>>> 68ed41ea049adf25e28ad174341dd1d005ddf9c8
 
 		//***********************
 		//   Mobile Goal Lift
@@ -99,6 +103,10 @@ moveArm(-joystickGetAnalog(2,2))
 			motorCap(bar_speed, 5);
 			moveFourBar(bar_speed);
 			}
+<<<<<<< HEAD
+=======
+				}
+>>>>>>> 68ed41ea049adf25e28ad174341dd1d005ddf9c8
 		else{
 			moveFourBar(0);
 		}
