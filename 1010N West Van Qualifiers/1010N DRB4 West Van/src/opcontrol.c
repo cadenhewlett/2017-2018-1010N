@@ -7,10 +7,15 @@
 #include "mogo.h"
 #include "arm.h"
 
+#define startHeight 300
+int height = startHeight;
+
 void operatorControl() {
 
 	gyroReset(gyro);
-	analogCalibrate(1);
+	analogCalibrate(ARMPOT);
+	analogCalibrate(CHAINPOT);
+	analogCalibrate(MOGOPOT);
 
 	while (1) {
 
@@ -22,7 +27,7 @@ void operatorControl() {
 
 		int Y1 = 0; //Y-Axis on Arcade
 		int X1 = 0; //X-Axis on Arcade
-		int deadZone = 20; //Deadzone Value
+		int deadZone = 10; //Deadzone Value // Was 20
 
 		int leftStickVertical = joystickGetAnalog(1, 3); //Joystick command for vertical movement
 		int leftStickHorizontal = joystickGetAnalog(1, 1); //Joystick command for horizontal movement
@@ -50,7 +55,38 @@ void operatorControl() {
 		//        Arm
 		//***********************
 
-		moveArm(-joystickGetAnalog(2,2));
+		bool armStick = joystickGetAnalog(2,2);
+		float armKp = 0.3;
+		float armKd = 3;
+		int armTarget;
+		int armSpeed;
+		int armError;
+		int armErrorDiff;
+		int armErrorLast;
+		float armP;
+		float armD;
+
+		if(joystickGetAnalog(2,2)){
+			moveArm(joystickGetAnalog(2,2));
+			armTarget = analogRead(ARMPOT);
+		}
+		else if(joystickGetDigital(2,8,JOY_DOWN)){
+			armError = 300 - analogRead(ARMPOT);
+			armSpeed = armError * armKp;
+			moveArm(armSpeed);
+		}
+		else if(armStick == 0){
+			armError = armTarget - analogRead(ARMPOT);
+			armP = armError * armKp;
+			armErrorDiff = armError - armErrorLast;
+			armErrorLast = armError;
+			armD = armKd * armErrorDiff;
+			armSpeed = armP + armD;
+			moveArm(armSpeed);
+		}
+		else{
+			moveArm(0);
+		}
 
 		//***********************
 		//   Mobile Goal Lift
@@ -77,26 +113,30 @@ void operatorControl() {
 			moveIntake(-127);
 		}
 		else {
-			moveIntake(-30);
+			moveIntake(0);
 		}
 
 		//***********************
 		//     Four BAR
 		//***********************
 
-		if (joystickGetDigital(2, 5, JOY_DOWN)){
-			moveChainBar(-127);
-		}
-		else if (joystickGetDigital(2, 5, JOY_UP)) {
+		bool barUp = joystickGetDigital(2,5,JOY_UP);
+		bool barDown = joystickGetDigital(2,5,JOY_DOWN);
+		float barGain = 0.3;
+		int barError;
+		int barSpeed;
+
+		if(barUp == 1 && barDown == 0){
 			moveChainBar(127);
 		}
-		else if (joystickGetDigital(2,7,JOY_LEFT)){
-			float bar_gain = 0.2;
-			int bar_error = 1250 - analogRead(1);
-			int bar_speed = bar_error * bar_gain;
-			motorCap(bar_speed, 5);
-			moveChainBar(bar_speed);
-			}
+		else if(barUp == 0 && barDown == 1){
+			moveChainBar(-127);
+		}
+		else if(barUp == 1 && barDown == 1){
+			barError = 1800 - analogRead(CHAINPOT);
+			barSpeed = barError * barGain;
+			moveChainBar(barSpeed);
+		}
 		else{
 			moveChainBar(0);
 		}

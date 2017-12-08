@@ -13,11 +13,11 @@ extern "C" {
 #define DRIVE_LF 8 //Power Expander C
 #define DRIVE_LB 9
 #define ARM_R 5
-#define ARM_L 4 //Power Expander A
-#define ARM_RL 7
+#define ARM_L 6 //Power Expander A
+#define ARM_RL 7 //Y CABLE
 #define MOGO 10
 #define INTAKE 1
-#define CHAINBAR 6 //Power Expander B
+#define CHAINBAR 4 //Power Expander B //Y CABLE
 
 //Sensor Ports
 Encoder encoderL;

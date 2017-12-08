@@ -115,7 +115,7 @@ void disablelcd(void *ignore){
 void opcontrollcd(void *ignore){
   int screen = 1;
   int screen_cap = 2;
-  int btn_time = 100;
+  int btn_time = 50;
   lcdClear(uart1);
 
   while(isEnabled()){

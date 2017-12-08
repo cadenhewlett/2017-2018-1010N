@@ -226,13 +226,13 @@ void mogo(int direction, int timeout){
 //***************************
 
 void chainup(int targetValue, int timeout, float kp, float kd){
-if(analogRead(1)<targetValue){
+if(analogRead(CHAINPOT)<targetValue){
   moveChainBar(127);
 }
 }
 
 void chaindown(int targetValue, int timeout, float kp, float kd){
-while(analogRead(1)>targetValue){
+while(analogRead(CHAINPOT)>targetValue){
   moveChainBar(-127);
 }
 }
