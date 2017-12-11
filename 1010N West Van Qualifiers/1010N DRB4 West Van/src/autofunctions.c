@@ -119,48 +119,6 @@ delay(20);
 }
 
 //***********************
-//       Arm Static PID
-//***********************
-
-void armPID(int targetValue, float kp, float kd)
-{
-int error = 0;
-int error_last = 0;
-int error_diff = 0;
-int error_sum = 0;
-int pos = 0;
-float ki = 0;
-float p;
-float d;
-float i;
-int armpower;
-
-while(joystickGetDigital(1, 6, JOY_UP) == 0 && joystickGetDigital(1, 6, JOY_DOWN) == 0){
-
-pos = analogRead(ARMPOT);
-error =  targetValue - pos;
-
-error_diff = error - error_last;
-error_last = error;
-error_sum  += error;
-
-p = kp * error;
-
-d  = kd * error_diff;
-if(error < 5) //icap
-{i = ki * error_sum;}
-
-armpower = p+i+d;
-if(armpower>90){armpower = 90;}
-if(armpower<-90){armpower = -90;}
-
-}
-
-moveArm(-armpower);
-delay(40);
-}
-
-//***********************
 //       Arm Move PID
 //***********************
 
@@ -215,20 +173,21 @@ void mogo(int direction, int timeout){
   moveMogo(0);
 }
 
-//****************************
-//       Intake Function
-//****************************
-
-
-
 //***************************
 //       FourBar PID
 //***************************
 
 void chainup(int targetValue, int timeout, float kp, float kd){
-if(analogRead(CHAINPOT)<targetValue){
-  moveChainBar(127);
-}
+  bool barUp = joystickGetDigital(2,5,JOY_UP);
+  bool barDown = joystickGetDigital(2,5,JOY_DOWN);
+  float barGain = 0.2;
+  int barError;
+  int barSpeed;
+
+
+  barError = targetValue - analogRead(CHAINPOT);
+  barSpeed = barError * barGain;
+  moveChainBar(barSpeed);
 }
 
 void chaindown(int targetValue, int timeout, float kp, float kd){

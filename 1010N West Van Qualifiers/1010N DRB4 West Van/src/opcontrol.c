@@ -10,6 +10,20 @@
 #define startHeight 300
 int height = startHeight;
 
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Arm MAX Height is 1700
+Arm MIN Height is 200
+Arm IDEAL Height is 300 to 400
+Arm Difference in cones is 200(150) per cone
+
+4-Bar Max Height is 1800
+4-Bar MIN Height is 10
+4-Bar 90 Degrees is 380
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+
 void operatorControl() {
 
 	gyroReset(gyro);
@@ -56,8 +70,8 @@ void operatorControl() {
 		//***********************
 
 		bool armStick = joystickGetAnalog(2,2);
-		float armKp = 0.3;
-		float armKd = 3;
+		float armKp = 0.2;
+		float armKd = 1; //2 Worked
 		int armTarget;
 		int armSpeed;
 		int armError;
@@ -74,6 +88,7 @@ void operatorControl() {
 			armError = 300 - analogRead(ARMPOT);
 			armSpeed = armError * armKp;
 			moveArm(armSpeed);
+			armTarget = 300;
 		}
 		else if(armStick == 0){
 			armError = armTarget - analogRead(ARMPOT);
@@ -98,6 +113,11 @@ void operatorControl() {
 		else if (joystickGetDigital(1, 5, JOY_DOWN)){
 			moveMogo(-127);
 		}
+		else if(joystickGetDigital(1, 7, JOY_UP)){
+			while(analogRead(MOGOPOT) < 1000){
+				moveMogo(-127);
+			}
+		}
 		else {
 			moveMogo(0);
 		}
@@ -105,15 +125,22 @@ void operatorControl() {
 		//***********************
 		//       Intake
 		//***********************
-
+ int a;
 		if (joystickGetDigital(2, 6, JOY_UP)){
 			moveIntake(127);
+			a = 1;
 		}
 		else if (joystickGetDigital(2, 6, JOY_DOWN)){
 			moveIntake(-127);
+			a = 0;
+		}
+		else if (a == 1)
+		{
+			moveIntake(15);
 		}
 		else {
 			moveIntake(0);
+
 		}
 
 		//***********************
@@ -122,7 +149,7 @@ void operatorControl() {
 
 		bool barUp = joystickGetDigital(2,5,JOY_UP);
 		bool barDown = joystickGetDigital(2,5,JOY_DOWN);
-		float barGain = 0.3;
+		float barGain = 0.2;
 		int barError;
 		int barSpeed;
 
@@ -133,10 +160,15 @@ void operatorControl() {
 			moveChainBar(-127);
 		}
 		else if(barUp == 1 && barDown == 1){
-			barError = 1800 - analogRead(CHAINPOT);
+			barError = 380 - analogRead(CHAINPOT);
 			barSpeed = barError * barGain;
 			moveChainBar(barSpeed);
 		}
+		/*else if(barUp == 0 && barDown == 0){
+			barError = 2000 - analogRead(CHAINPOT);
+			barSpeed = barError * barGain;
+			moveChainBar(barSpeed);
+		}*/
 		else{
 			moveChainBar(0);
 		}
