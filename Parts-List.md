@@ -2,22 +2,22 @@
 
 Main Part                 | Sub-Part             | Serial Number        | Comments
 ------------------------- | -------------------- | -------------------- | --------------------
-**7.2 V Batteries**       |                      |                      |   7
-**7.2 V Battery Charger** |                      |                      |   
-**AAA Batteries**         |                      |                      |   
-**AAA Battery Charger**   |                      |                      |
-**_Cortex_**              |                      |                      |  
+**7.2 V Batteries**       |                      |                      |  7
+**7.2 V Battery Charger** |                      |                      |  4
+**AAA Batteries**         |                      |                      |  12
+**AAA Battery Charger**   |                      |                      |  1
+**_Cortex_**              |                      |                      |  Yes
 **_Joysticks_**           | Main                 |                      |  Yes
 **_Joysticks_**           | Partner              |                      |  Yes
-**_Motors_**              | Motor 1              |                      |    
-**_Motors_**              | Motor 2              |                      |  
-**_Motors_**              | Motor 3              |                      |  
-**_Motors_**              | Motor 4              |                      |  
-**_Motors_**              | Motor 5              |                      |  
-**_Motors_**              | Motor 6              |                      |  
-**_Motors_**              | Motor 7              |                      |  
-**_Motors_**              | Motor 8              |                      |  
-**_Motors_**              | Motor 9              |                      |  
+**_Motors_**              | Motor 1              |                      |  HS
+**_Motors_**              | Motor 2              |                      |  HS
+**_Motors_**              | Motor 3              |                      |  HS
+**_Motors_**              | Motor 4              |                      |  HS
+**_Motors_**              | Motor 5              |                      |  HS
+**_Motors_**              | Motor 6              |                      |  HS
+**_Motors_**              | Motor 7              |                      |  HS
+**_Motors_**              | Motor 8              |                      |  HS
+**_Motors_**              | Motor 9              |                      |  HS
 **_Motors_**              | Motor 10             |                      |  
 **_Motors_**              | Motor 11             |                      |  
 **_Motors_**              | Motor 12             |                      |  
@@ -29,9 +29,9 @@ Main Part                 | Sub-Part             | Serial Number        | Commen
 
 Sensors                | Quantity     | Serial Number(s)     | Comments
 ---------------------- | ------------ | -------------------- | --------------------
-**_Accelerometers_**   |              |                      |  Have
-**_Encoders_**         |              |                      |  
-**_Gyros_**            |              |                      |  Have
-**_Potentiometers_**   |              |                      |  4
-**_Ultrasound_**       |              |                      |  Don't have
+**_Accelerometers_**   |  0           |                      |  
+**_Encoders_**         |  2           |                      |  
+**_Gyros_**            |  1           |                      |  
+**_Potentiometers_**   |  4           |                      |  
+**_Ultrasonic_**       |  0           |                      |  
 
