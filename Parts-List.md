@@ -5,12 +5,12 @@ Main Part                 | Sub-Part             | Serial Number        | Commen
 **7.2 V Battery A**       |                      | 6115AT                     |  
 **7.2 V Battery B**       |                      | 7185AT                     |  
 **7.2 V Battery C**       |                      | 7185AT                     |  
-**7.2 V Battery D**       |                      | 6115AT                     | 
+**7.2 V Battery D**       |                      | 6115AT                     |
 **7.2 V Battery E**       |                      | 6115AT                     |  
 **7.2 V Battery F**       |                      | 6045AT                     |  
 **7.2 V Battery G**       |                      | 6115AT                     |  
 **7.2 V Battery Charger** |                      |                      |  4
-**AAA Batternies**         |                      |                      |  12
+**AAA Batteries**         |                      |                      |  12
 **AAA Battery Charger**   |                      | 5213AB                     |  1
 **_Cortex_**              |                      | 7152AA                     |  Yes
 **_Joysticks_**           | Main                 | 5022AA                     |  Yes
@@ -40,4 +40,3 @@ Sensors                | Quantity     | Serial Number(s)     | Comments
 **_Gyros_**            |  1           |                      |  
 **_Potentiometers_**   |  4           |                      |  
 **_Ultrasonic_**       |  0           |                      |  
-
