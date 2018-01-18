@@ -27,14 +27,20 @@ void chaindown(int targetValue, int timeout, float kp, float kd); //FourBarPID D
 
 void intakeOpen(); //Open Claw
 
-void intakeClose();
+void intakeClose(); //Close Claw
 
-void intakeStay();
+void intakeStay(); //Stay Open
 
-void intakeHold();
+void intakeHold(); //Hold Cone
 
-void preLoads();
+void preLoads(); //Preloads
 
-void conePreset();
+void conePreset(); //Scoring cone preset
+
+void matchbarup(); //Bar up for match
+
+void matchbardown(); //Bar down for match
+
+void matchbarstraight(); //Bar Straight
 
 #endif

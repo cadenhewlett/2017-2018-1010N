@@ -205,7 +205,7 @@ void mogoOut(int timeout){
 
 void mogoScore(){
   while(analogRead(MOGOPOT) < 1000){
-    moveMogo(-100);
+    moveMogo(100);
   }
   delay(500);
 }
@@ -224,7 +224,7 @@ void chainup(int targetValue, int timeout, float kp, float kd){
 
   barError = targetValue - analogRead(CHAINPOT);
   barSpeed = barError * barGain;
-  moveChainBar(-barSpeed);
+  moveChainBar(barSpeed);
 }
 
 void chaindown(int targetValue, int timeout, float kp, float kd){
@@ -237,7 +237,49 @@ void chaindown(int targetValue, int timeout, float kp, float kd){
 
   barError = targetValue - analogRead(CHAINPOT);
   barSpeed = barError * barGain;
-  moveChainBar(-barSpeed);
+  moveChainBar(barSpeed);
+}
+
+void matchbarup(){
+  float barGain = 1.5;
+  int barError;
+  int barSpeed;
+  int currentChain;
+  int timeout_bar = 1000;
+  int startTime = millis();
+  while(analogRead(CHAINPOT) < 2650 || (millis()-startTime)<timeout_bar){
+  barError = 2650 - analogRead(CHAINPOT);
+  barSpeed = barError * barGain;
+  moveChainBar(barSpeed);
+  }
+}
+
+void matchbardown(){
+  float barGain = 0.7;
+  int barError;
+  int barSpeed;
+  int currentChain;
+  int timeout_bar = 1000;
+  int startTime = millis();
+  while(analogRead(CHAINPOT) > 5 || (millis()-startTime)<timeout_bar){
+  barError = 5 - analogRead(CHAINPOT);
+  barSpeed = barError * barGain;
+  moveChainBar(barSpeed);
+  }
+}
+
+void matchbarstraight(){
+  float barGain = 0.7;
+  int barError;
+  int barSpeed;
+  int currentChain;
+  int timeout_bar = 1000;
+  int startTime = millis();
+  while(analogRead(CHAINPOT) > 2150 || analogRead(CHAINPOT) < 2150 || (millis()-startTime)<timeout_bar){
+  barError = 2150 - analogRead(CHAINPOT);
+  barSpeed = barError * barGain;
+  moveChainBar(barSpeed);
+  }
 }
 
 //***************************
@@ -246,22 +288,22 @@ void chaindown(int targetValue, int timeout, float kp, float kd){
 
 void intakeOpen(){
   moveIntake(-127);
-  delay(100)
+  delay(100);
   moveIntake(0);
 }
 
 void intakeClose(){
-  moveIntake(127)
+  moveIntake(127);
   delay(100);
   moveIntake(0);
 }
 
 void intakeStay(){
-  mvoeIntake(-20);
+  moveIntake(0);
 }
 
-void intakteHold(){
-  moveIntake(20);
+void intakeHold(){
+  moveIntake(30);
 }
 
 //***************************
@@ -274,4 +316,20 @@ void preLoads(){}
 //       Cone Preset
 //***************************
 
-void conePresets(){}
+void conePreset(){
+  intakeHold();
+  moveArm(127);
+  delay(250);
+  chainup(175,5000,0.2,0);
+  moveArm(-127);
+  delay(100);
+  moveArm(0);
+  intakeOpen();
+  intakeStay();
+  moveArm(127);
+  delay(100);
+  chaindown(2850,5000,0.2,0);
+  moveArm(-127);
+  delay(500);
+  moveArm(0);
+}

@@ -14,9 +14,9 @@ Arm MIN Height is 200
 Arm IDEAL Height is 300 to 400
 Arm Difference in cones is 200(150) per cone
 
-ChainBar Max Height is 175
-ChainBar Min Height is 2850
-ChainBar 90 Degrees is 1750
+ChainBar Max Height is 2620
+ChainBar Min Height is 10
+ChainBar 90 Degrees is 2150
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
@@ -70,8 +70,8 @@ void operatorControl() {
 
 		//Arm Variables
 		bool armStick = joystickGetAnalog(2,2);
-		float armKp = 0.2;
-		float armKd = 1; //2 Worked
+		float armKp = 0.1;//0.2
+		float armKd = 2; //2 Worked
 		int armTarget;
 		int armSpeed;
 		int armError;
@@ -114,7 +114,7 @@ void operatorControl() {
 		//Preset for scoring with cones (Out)
 		else if(joystickGetDigital(1, 7, JOY_UP)){
 			while(analogRead(MOGOPOT) < 1000){
-				moveMogo(-100);
+				moveMogo(100);
 			}
 		}
 		else {
@@ -141,7 +141,7 @@ void operatorControl() {
 		//Claw Hold On
 		else if (hold == 1)
 		{
-			moveIntake(20);
+			moveIntake(30);
 		}
 		else {
 			moveIntake(0);
@@ -159,35 +159,36 @@ void operatorControl() {
 		int barError;
 		int barSpeed;
 		int currentChain;
+		int timeout_bar = 1000;
 
 		//ChainBar Up to Preset
 		if(barUp == 1 && barDown == 0){
-			while(analogRead(CHAINPOT) > 175){
-			barError = 175 - analogRead(CHAINPOT);
-			barSpeed = barError * barGain;
-			moveChainBar(-barSpeed);
-			currentChain = 175;
-			}
+			TaskHandle matchchainup = taskCreate(matchbarup, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+			currentChain = 2650;
 		}
 
 		//ChainBar Down to Preset
 		else if(barUp == 0 && barDown == 1){
-			while(analogRead(CHAINPOT) > 175){
-			barError = 2850 - analogRead(CHAINPOT);
-			barSpeed = barError * barGain;
-			moveChainBar(-barSpeed);
-			currentChain = 2850;
-			}
+			TaskHandle matchbardown = taskCreate(matchbardown, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+			currentChain = 5;
 		}
 
 		//ChainBAr PID for when static
 		else if(barUp == 0 && barDown == 0){
 			barError = currentChain - analogRead(CHAINPOT);
 			barSpeed = barError * barGain;
-			moveChainBar(-barSpeed);
+			moveChainBar(barSpeed);
+		}
+		else if(joystickGetDigital(2, 8, JOY_UP)){
+			TaskHandle matchbarstraight = taskCreate(matchbarstraight, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+			currentChain = 2150;
 		}
 		else{
 			moveChainBar(0);
+		}
+
+		if(joystickGetDigital(2,7,JOY_UP)){
+			conePreset();
 		}
 
 		delay(20);
